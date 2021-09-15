@@ -1,0 +1,144 @@
+/* BUTTONS */
+button {
+  width: 200px;
+  height: 32px;
+  border: 0;
+  border-radius: 4px;
+  background: #2baeff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancel-button {
+  background: #ff2b2b !important;
+  margin-left: 10px;
+}
+
+/* PAGE CONTAINER */
+.page-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+/* PAGE CONTENT */
+.page-content {
+  height: 100%;
+  width: 100%;
+  padding: 10px 10px 0 10px;
+}
+
+.page-content .content {
+  margin-top: 50px;
+}
+
+/* PAGE HEADER */
+.content-header {
+  width: 100%;
+  display: flex;
+}
+
+.content-header h1 {
+  width: 100%;
+}
+
+/* TABLES */
+.page-content table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.page-content table,
+.page-content th,
+.page-content td {
+  border: #000 solid 1px;
+}
+
+.page-content th,
+.page-content td {
+  padding: 5px;
+}
+
+.coloumns-actions {
+  text-align: center;
+}
+
+/* MODALS */
+.paciente-modal,
+.delete-modal,
+.note-modal,
+.schedule-modal {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-modal .content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* INPUTS OF MODALS */
+.paciente-modal .inputs,
+.schedule-modal .inputs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.paciente-modal .inputs input,
+.paciente-modal .inputs select,
+.schedule-modal .inputs input,
+.schedule-modal .inputs select {
+  width: 100%;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.note-modal .inputs textarea {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* BUTTONS OF MODALS */
+.paciente-modal .buttons,
+.delete-modal .buttons,
+.schedule-modal .buttons,
+.note-modal .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paciente-modal .buttons button,
+.delete-modal .buttons button,
+.schedule-modal .buttons button,
+.note-modal .buttons button {
+  width: 100px;
+  border: 0;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 4px;
+  background: #2baeff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.paciente-modal .buttons button:hover,
+.delete-modal .buttons button:hover,
+.schedule-modal .buttons button:hover,
+.note-modal .buttons button:hover {
+  opacity: 0.8;
+}
