@@ -11,8 +11,8 @@ export default class Main extends Component {
     super(props);
     this.state = {
       visible: false,
-      pacientes: [],
-      new_paciente: {
+      patients: [],
+      new_patient: {
         nome: "",
         data_nscimento: moment().format("YYYY-MM-DD"),
         gender: "F",
@@ -24,9 +24,9 @@ export default class Main extends Component {
   }
 
   async componentDidMount() {
-    const xResponse = await api.pacienteList();
+    const xResponse = await api.patientList();
     if (xResponse.data) {
-      this.setState({ pacientes: xResponse.data });
+      this.setState({ patients: xResponse.data });
     }
   }
 
@@ -45,10 +45,10 @@ export default class Main extends Component {
   handleSubmit = pEvent => {
     pEvent.preventDefault();
     api
-      .pacienteCreate(this.state.new_paciente)
+      .patientCreate(this.state.new_patient)
       .then(rResult => {
         console.log(rResult);
-        this.props.history.push(`/pacientes/${rResult.data.insertId}`);
+        this.props.history.push(`/patients/${rResult.data.insertId}`);
       })
       .catch(rErr => {
         alert(`Erro: ${rErr}`);
@@ -57,55 +57,55 @@ export default class Main extends Component {
 
   handleInputNameChange = pEvent => {
     this.setState({
-      new_paciente: {
-        ...this.state.new_paciente,
+      new_patient: {
+        ...this.state.new_patient,
         name: pEvent.target.value
       }
     });
   };
   handleInputBirthDateChange = pEvent => {
     this.setState({
-      new_paciente: {
-        ...this.state.new_paciente,
+      new_patient: {
+        ...this.state.new_patient,
         birth_date: pEvent.target.value
       }
     });
   };
   handleInputGenderChange = pEvent => {
     this.setState({
-      new_paciente: {
-        ...this.state.new_paciente,
+      new_patient: {
+        ...this.state.new_patient,
         gender: pEvent.target.value
       }
     });
   };
   handleInputTelephoneChange = pEvent => {
     this.setState({
-      new_paciente: {
-        ...this.state.new_paciente,
+      new_patient: {
+        ...this.state.new_patient,
         telefone: pEvent.target.value
       }
     });
   };
   handleInputHeightChange = pEvent => {
     this.setState({
-      new_paciente: {
-        ...this.state.new_paciente,
+      new_patient: {
+        ...this.state.new_patient,
         height: pEvent.target.value
       }
     });
   };
   handleInputWeightChange = pEvent => {
     this.setState({
-      new_paciente: {
-        ...this.state.new_paciente,
+      new_patient: {
+        ...this.state.new_patient,
         weight: pEvent.target.value
       }
     });
   };
 
   render() {
-    console.log("paciente1:",this.state)
+    console.log("patient1:",this.state)
     return (
       <div className="page-container">
         <SideMenu />
@@ -116,26 +116,26 @@ export default class Main extends Component {
           effect="fadeInDown"
           onClickAway={() => this.closeModal()}
         >
-          <div className="paciente-modal">
-            <h1>Novo Cadastro de Paciente</h1>
+          <div className="patient-modal">
+            <h1>Novo Cadastro de Patient</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="inputs">
                 <input
                   placeholder="Nome"
-                  value={this.state.new_paciente.name}
+                  value={this.state.new_patient.name}
                   onChange={this.handleInputNameChange}
                   required="required"
                   type="text"
                 />
                 <input
                   placeholder="Data de Nascimento"
-                  value={this.state.new_paciente.birth_date}
+                  value={this.state.new_patient.birth_date}
                   onChange={this.handleInputBirthDateChange}
                   required="required"
                   type="date"
                 />
                 <select
-                  value={this.state.new_paciente.gender}
+                  value={this.state.new_patient.gender}
                   onChange={this.handleInputGenderChange}
                   required="required"
                 >
@@ -144,20 +144,20 @@ export default class Main extends Component {
                 </select>
                 <input
                   placeholder="Telefone: (xx) xxxxx-xxxx"
-                  value={this.state.new_paciente.telephone}
+                  value={this.state.new_patient.telephone}
                   onChange={this.handleInputTelephoneChange}
                   type="tel"
                 />
                 <input
                   placeholder="Altura"
-                  value={this.state.new_paciente.height}
+                  value={this.state.new_patient.height}
                   onChange={this.handleInputHeightChange}
                   type="number"
                   min="0"
                 />
                 <input
                   placeholder="Peso"
-                  value={this.state.new_paciente.weight}
+                  value={this.state.new_patient.weight}
                   onChange={this.handleInputWeightChange}
                   type="number"
                   min="0"
@@ -178,9 +178,9 @@ export default class Main extends Component {
         </Modal>
         <div className="page-content">
           <div className="content-header">
-            <h1>Pacientes</h1>
+            <h1>Patients</h1>
             <button type="button" onClick={() => this.openModal()}>
-              Novo Paciente
+              Novo Patient
             </button>
           </div>
           <div className="content">
@@ -192,15 +192,15 @@ export default class Main extends Component {
                 <th>Telefone</th>
                 <th></th>
               </tr>
-              {this.pacientes &&
-                this.state.pacientes.map(paciente => (
+              {this.patients &&
+                this.state.patients.map(patient => (
                   <tr>
-                    <td>{paciente.nome}</td>
-                    <td>{moment(paciente.data_nscimento).format("DD/MM/YYYY")}</td>
-                    <td>{paciente.gender === "F" ? "Feminino" : "Masculino"}</td>
-                    <td>{paciente.telefone}</td>
+                    <td>{patient.nome}</td>
+                    <td>{moment(patient.data_nscimento).format("DD/MM/YYYY")}</td>
+                    <td>{patient.gender === "F" ? "Feminino" : "Masculino"}</td>
+                    <td>{patient.telefone}</td>
                     <td className="coloumns-actions">
-                      <a href={"/pacientes/" + paciente.paciente_id}>
+                      <a href={"/patients/" + patient.patient_id}>
                         <MdSearch size={24} color="#000" />
                       </a>
                     </td>

@@ -20,13 +20,13 @@ const api = {
     });
   },
 
-  //Paciente
+  //Patient
   /**
-   * List of All Pacientes
+   * List of All Patients
    */
-  pacienteList: () => {
+  patientList: () => {
     return new Promise((pResolve, pReject) => {
-      return BaseAPI.get("paciente")
+      return BaseAPI.get("patient")
         .then(rResult => {
           return pResolve(rResult.data);
         })
@@ -37,11 +37,11 @@ const api = {
   },
 
   /**
-   * Create one Paciente
+   * Create one Patient
    */
-  pacienteCreate: pDataObject => {
+  patientCreate: pDataObject => {
     return new Promise((pResolve, pReject) => {
-      return BaseAPI.post("pacientes", pDataObject)
+      return BaseAPI.post("patients", pDataObject)
         .then(rResult => {
           return pResolve(rResult.data);
         })
@@ -52,11 +52,11 @@ const api = {
   },
 
   /**
-   * Read One Paciente by ID
+   * Read One Patient by ID
    */
-  pacienteRead: pPacienteId => {
+  patientRead: pPatientId => {
     return new Promise((pResolve, pReject) => {
-      return BaseAPI.get(`pacientes/${pPacienteId}`)
+      return BaseAPI.get(`patients/${pPatientId}`)
         .then(rResult => {
           return pResolve(rResult.data);
         })
@@ -67,11 +67,11 @@ const api = {
   },
 
   /**
-   * Update one Paciente
+   * Update one Patient
    */
-  pacienteUpdate: (pDataObject, pPacienteId) => {
+  patientUpdate: (pDataObject, pPatientId) => {
     return new Promise((pResolve, pReject) => {
-      return BaseAPI.put(`pacientes/${pPacienteId}`, pDataObject)
+      return BaseAPI.put(`patients/${pPatientId}`, pDataObject)
         .then(rResult => {
           return pResolve(rResult.data);
         })
@@ -82,11 +82,11 @@ const api = {
   },
 
   /**
-   * Delete one paciente by ID
+   * Delete one patient by ID
    */
-  pacienteDelete: pPacienteId => {
+  patientDelete: pPatientId => {
     return new Promise((pResolve, pReject) => {
-      return BaseAPI.delete(`pacientes/${pPacienteId}`)
+      return BaseAPI.delete(`patients/${pPatientId}`)
         .then(rResult => {
           return pResolve(rResult.data);
         })
@@ -98,7 +98,7 @@ const api = {
 
   //Schedules
   /**
-   * List of All Schedules of one paciente
+   * List of All Schedules of one patient
    */
   scheduleList: () => {
     return new Promise((pResolve, pReject) => {
@@ -113,11 +113,11 @@ const api = {
   },
 
   /**
-   * List of All Schedules of one paciente
+   * List of All Schedules of one patient
    */
-  scheduleListOfPaciente: pPacienteId => {
+  scheduleListOfPatient: pPatientId => {
     return new Promise((pResolve, pReject) => {
-      return BaseAPI.get(`schedules/${pPacienteId}`)
+      return BaseAPI.get(`schedules/${pPatientId}`)
         .then(rResult => {
           return pResolve(rResult.data);
         })
@@ -148,7 +148,7 @@ const api = {
   scheduleUpdate: (pDataObject, pConditions) => {
     return new Promise((pResolve, pReject) => {
       return BaseAPI.put(
-        `schedules/${pConditions.paciente_id}/${pConditions.schedule_date}`,
+        `schedules/${pConditions.patient_id}/${pConditions.schedule_date}`,
         pDataObject
       )
         .then(rResult => {
@@ -167,7 +167,7 @@ const api = {
     console.log(pConditions);
     return new Promise((pResolve, pReject) => {
       return BaseAPI.delete(
-        `schedules/${pConditions.paciente_id}/${pConditions.schedule_date}`
+        `schedules/${pConditions.patient_id}/${pConditions.schedule_date}`
       )
         .then(rResult => {
           return pResolve(rResult.data);
@@ -180,11 +180,11 @@ const api = {
 
   //Notes
   /**
-   * List of All Notes of one paciente
+   * List of All Notes of one patient
    */
-  noteList: pPacienteId => {
+  noteList: pPatientId => {
     return new Promise((pResolve, pReject) => {
-      return BaseAPI.get(`notes/${pPacienteId}`)
+      return BaseAPI.get(`notes/${pPatientId}`)
         .then(rResult => {
           return pResolve(rResult.data);
         })
@@ -212,7 +212,7 @@ const api = {
   noteRead: pConditions => {
     return new Promise((pResolve, pReject) => {
       return BaseAPI.get(
-        `notes/${pConditions.paciente_id}/${pConditions.schedule_date}`
+        `notes/${pConditions.patient_id}/${pConditions.schedule_date}`
       )
         .then(rResult => {
           return pResolve(rResult.data);

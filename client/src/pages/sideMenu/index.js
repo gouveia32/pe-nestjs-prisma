@@ -8,7 +8,7 @@ export default class SideMenu extends Component {
         <h1>Prontomed</h1>
         <ul>
           <li>
-            <a href="/">Pacientes</a>
+            <a href="/">Patients</a>
           </li>
           <li>
             <a href="/schedules">Agendamentos</a>

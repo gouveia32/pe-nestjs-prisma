@@ -13,14 +13,14 @@ export default class Schedule extends Component {
     delete_visible: false,
     schedules: [],
     schedule: {
-      paciente_id: null,
+      patient_id: null,
       schedule_date: moment().format("YYYY-MM-DD")
     },
     schedule_original: {
-      paciente_id: null,
+      patient_id: null,
       schedule_date: null
     },
-    pacientes: []
+    patients: []
   };
 
   async componentDidMount() {
@@ -28,9 +28,9 @@ export default class Schedule extends Component {
     if (xSchedules.data) {
       this.setState({ schedules: xSchedules.data });
     }
-    const xPacientes = await api.pacienteList();
-    if (xPacientes.data) {
-      this.setState({ pacientes: xPacientes.data });
+    const xPatients = await api.patientList();
+    if (xPatients.data) {
+      this.setState({ patients: xPatients.data });
     }
   }
 
@@ -42,11 +42,11 @@ export default class Schedule extends Component {
       this.setState({
         modalAction: "E",
         schedule: {
-          paciente_id: pSchedule.paciente_id,
+          patient_id: pSchedule.patient_id,
           schedule_date: moment(pSchedule.schedule_date).format("YYYY-MM-DD")
         },
         schedule_original: {
-          paciente_id: pSchedule.paciente_id,
+          patient_id: pSchedule.patient_id,
           schedule_date: moment(pSchedule.schedule_date).format("YYYY-MM-DD")
         }
       });
@@ -54,7 +54,7 @@ export default class Schedule extends Component {
       this.setState({
         modalAction: "N",
         schedule: {
-          paciente_id: 0,
+          patient_id: 0,
           schedule_date: moment().format("YYYY-MM-DD")
         }
       });
@@ -64,14 +64,14 @@ export default class Schedule extends Component {
   closeModal() {
     this.setState({
       visible: false,
-      schedule: { paciente_id: 0, schedule_date: moment().format("YYYY-MM-DD") }
+      schedule: { patient_id: 0, schedule_date: moment().format("YYYY-MM-DD") }
     });
   }
-  handleInputPacienteChange = pEvent => {
+  handleInputPatientChange = pEvent => {
     this.setState({
       schedule: {
         ...this.state.schedule,
-        paciente_id: pEvent.target.value
+        patient_id: pEvent.target.value
       }
     });
   };
@@ -116,7 +116,7 @@ export default class Schedule extends Component {
     }
   };
 
-  // DELETE Paciente
+  // DELETE Patient
   openModalDelete(pSchedule) {
     this.setState({
       delete_visible: true,
@@ -126,13 +126,13 @@ export default class Schedule extends Component {
   closeModalDelete() {
     this.setState({
       delete_visible: false,
-      schedule: { paciente_id: 0, schedule_date: moment().format("YYYY-MM-DD") }
+      schedule: { patient_id: 0, schedule_date: moment().format("YYYY-MM-DD") }
     });
   }
   handleDelete = () => {
     api
       .scheduleDelete({
-        paciente_id: this.state.schedule.paciente_id,
+        patient_id: this.state.schedule.patient_id,
         schedule_date: moment(this.state.schedule.schedule_date).format(
           "YYYY-MM-DD"
         )
@@ -170,15 +170,15 @@ export default class Schedule extends Component {
             <form onSubmit={this.handleSubmit}>
               <div className="inputs">
                 <select
-                  value={this.state.schedule.paciente_id}
-                  onChange={this.handleInputPacienteChange}
+                  value={this.state.schedule.patient_id}
+                  onChange={this.handleInputPatientChange}
                   required="required"
                   disabled={this.state.modalAction === "E"}
                 >
-                  <option value="0">Selecione um Paciente</option>
-                  {this.state.pacientes &&
-                    this.state.pacientes.map(paciente => (
-                      <option value={paciente.paciente_id}>{paciente.name}</option>
+                  <option value="0">Selecione um Patient</option>
+                  {this.state.patients &&
+                    this.state.patients.map(patient => (
+                      <option value={patient.patient_id}>{patient.name}</option>
                     ))}
                 </select>
                 <input
@@ -238,7 +238,7 @@ export default class Schedule extends Component {
           <div className="content">
             <table>
               <tr>
-                <th>Paciente</th>
+                <th>Patient</th>
                 <th>Data</th>
                 <th></th>
               </tr>
